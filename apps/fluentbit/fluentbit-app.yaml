@@ -5,16 +5,16 @@ metadata:
   namespace: argocd
 spec:
   project: observability # Optional, depends on your Argo CD setup
-  source:
-    repoURL: https://github.com/jjgrinwis/argo-apps # Your GitOps repo URL
-    targetRevision: main # The branch you want to track (main, dev, release-x)
-    path: apps/fluentbit # Path to your Argo CD application manifest
-    helm:
-      repository: https://fluent.github.io/helm-charts
+  sources:
+    - repoURL: "https://fluent.github.io/helm-charts" # public repo
       chart: fluentbit
-      version: 0.48.10 # You can specify the version here or leave it out for the latest
-      valueFiles:
-        - ../../values/fluentbit/helm-values.yaml # Path to your custom values.yaml
+      targetRevision: 0.48.10
+      helm:
+        valueFiles:
+          - $values/values/fluentbit/values.yaml
+    - repoURL: "https://github.com/jjgrinwis/argo-apps"
+      targetRevision: main
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: observability # Namespace where Fluent Bit will be deployed
