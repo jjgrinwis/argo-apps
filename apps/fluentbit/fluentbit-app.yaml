@@ -4,7 +4,7 @@ metadata:
   name: fluentbit
   namespace: argocd
 spec:
-  project: observability # Optional, depends on your Argo CD setup
+  project: default # Optional, depends on your Argo CD setup
   sources:
     - repoURL: "https://fluent.github.io/helm-charts" # public repo
       chart: fluentbit
