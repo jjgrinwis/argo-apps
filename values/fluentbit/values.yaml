@@ -4,7 +4,7 @@
 kind: Deployment
 
 # replicaCount -- Only applicable if kind=Deployment
-replicaCount: 1
+replicaCount: 2
 
 image:
   repository: cr.fluentbit.io/fluent/fluent-bit
@@ -217,25 +217,25 @@ resources: {}
 
 ## only available if kind is Deployment
 ingress:
-  enabled: true
-  ingressClassName: "nginx"
-  annotations:
-    cert-manager.io/cluster-issuer: cert-manager-global
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/auth-type: "basic"
-    nginx.ingress.kubernetes.io/auth-secret: "fluent-bit-basic-auth"
-    nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
-  hosts:
-    - host: fluent-bit.great-demo.com
-      port: 8888
-  extraHosts: []
-  # - host: fluent-bit-extra.example.tld
-  ## specify extraPort number
-  #   port: 5170
-  tls:
-    - secretName: fluentbit-tls
-      hosts:
-        - fluent-bit.great-demo.com
+  enabled: false
+  # ingressClassName: "nginx"
+  # annotations:
+  #   cert-manager.io/cluster-issuer: cert-manager-global
+  #   kubernetes.io/ingress.class: nginx
+  #   nginx.ingress.kubernetes.io/auth-type: "basic"
+  #   nginx.ingress.kubernetes.io/auth-secret: "fluent-bit-basic-auth"
+  #   nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
+  # hosts:
+  #   - host: fluent-bit.great-demo.com
+  #     port: 8888
+  # extraHosts: []
+  # # - host: fluent-bit-extra.example.tld
+  # ## specify extraPort number
+  # #   port: 5170
+  # tls:
+  #   - secretName: fluentbit-tls
+  #     hosts:
+  #       - fluent-bit.great-demo.com
 
 ## only available if kind is Deployment
 autoscaling:
